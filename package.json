@@ -1,0 +1,27 @@
+{
+  "name": "weather-forecast",
+  "version": "1.0.0",
+  "description": "weather-forecast",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-concat": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Feenux/weather-forecast.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Feenux/weather-forecast/issues"
+  },
+  "homepage": "https://github.com/Feenux/weather-forecast#readme"
+}
