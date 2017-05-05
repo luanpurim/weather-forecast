@@ -10,7 +10,7 @@
             .theme('default')
             .primaryPalette('teal')
             .accentPalette('deep-orange')
-            .warnPalette('amber')
+            .warnPalette('indigo')
             .backgroundPalette('blue-grey');
         $mdThemingProvider.theme('default-dark')
             .primaryPalette('teal')
