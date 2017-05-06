@@ -1,7 +1,7 @@
 <div md-whiteframe="1">
-    <md-toolbar layout="row" class="header" md-theme="{{'default-dark'}}" md-theme-watch >
-        <div flex layout="row" layout-align="end center">
-            <div flex layout="row" layout-align="start center">
+    <md-toolbar layout="row" md-theme="{{'default-dark'}}" md-theme-watch >
+        <div flex layout-xs="column" layout="row" layout-align="end center">
+            <div flex layout-padding layout="row" layout-align="start center">
                  <span class="md-title">Previsão do Tempo</span>
             </div>
             <md-input-container>
@@ -15,18 +15,20 @@
                 md-items="cityName in $ctrl.findCity($ctrl.city)" 
                 md-search-text="$ctrl.city" 
                 md-item-text="cityName"
-                md-floating-label="Cidade">
+                md-floating-label="Cidade"
+                md-search-text-change="$ctrl.verifyCity($ctrl.city)">
                 <span md-highlight-text="city">{{ cityName }}</span>
             </md-autocomplete>
+            <md-button class="md-icon-button" ng-click="$ctrl.saveFav($ctrl.city)">
+               <md-icon ng-class="$ctrl.aplyFav ? 'fav-active' : 'fav-inactive'" class="material-icons">star</md-icon>
+            </md-button>
             <md-button class="md-fab md-mini" ng-click="$ctrl.getWeatherInformation($ctrl.city)">
-                <md-icon class="material-icons">search</md-icon>
+                <md-icon class="material-icons ">search</md-icon>
             </md-button>
         </div>
     </md-toolbar>
 </div>
-<md-divider></md-divider>
-<div layout="row"  layout-align="space-around">
-
+<div layout="row" ng-if="$ctrl.data" layout-align="space-around">
     <div flex flex-gt-sm="70" flex-gt-lg="90" layout="row" layout-align="space-around center">
         <div layout="column">
             <div flex layout="row">
@@ -41,13 +43,31 @@
                     </div>
                     <div layout="row">
                             <div layout="column">
-                                <div md-whiteframe="20" layout="row">
-                                    <md-subheader flex>
+                                <div md-whiteframe="20" layout="column">
+                                    <md-subheader flex layout-padding>
                                         <div layout="column" layout-align="center center">
                                             <span flex class="md-title" ng-bind="('Clima em ' + $ctrl.cityName)"></span>
                                             <span flex class="md-subhead" ng-bind="($ctrl.initialDate+' a '+$ctrl.finalDate)"></span>
                                         </div>
                                     </md-subheader >
+                                    <div flex md-colors="{background: 'indigo'}">
+                                        <p ng-bind="$ctrl.sugestion" class="md-caption center-align"></p>
+                                    </div>  
+                                    <div flex layout="row">
+                                        <div flex="33" md-colors="{background: 'teal-dark'}">
+                                            <p class="md-caption center-align">Temperatura máxima e minima (7 dias)</p>
+                                        </div>
+                                        <div flex="33" layout="row" md-colors="{background: 'deep-orange'}">
+                                            <md-icon flex="20" class="material-icons icon-white medium-icon">arrow_upward</md-icon>
+                                            <p flex class="md-caption" ng-bind="(' Máxima: ' + $ctrl.maxWeek.temp + '°C')"></p>
+                                            <p flex class="md-caption" ng-bind="(' Data: ' + ($ctrl.maxWeek.date | date:'EEE-dd-MMM'))"></p>
+                                        </div>
+                                        <div flex="33" layout="row" md-colors="{background: 'indigo-400'}">
+                                            <md-icon flex="20" class="material-icons icon-white medium-icon">arrow_downward</md-icon>
+                                            <p flex class="md-caption" ng-bind="(' Minima: ' + $ctrl.minWeek.temp + '°C')"></p>
+                                            <p flex class="md-caption" ng-bind="(' Data: ' + ($ctrl.minWeek.date | date:'EEE-dd-MMM'))"></p>
+                                        </div>
+                                    </div>                                        
                                 </div>
                                 <div md-whiteframe="10" layout="row" layout-wrap layout-align="space-around center">
                                     <div ng-repeat="forecast in $ctrl.data.list" flex="100" flex-gt-xs="50" flex-gt-md="33" flex-gt-lg="25">
@@ -58,12 +78,23 @@
                     </div>
                 </section>
             </div>
-            <div flex layout-wrap layout="row"layout-align="space-around center" md-whiteframe >
-                <div flex-gt-xs="50" flex-gt-md="33" flex-gt-lg="25" layout-align-xl="25">
+            <div flex layout-wrap  layout="row" layout-align="space-around center" md-whiteframe >
+                <!--<div flex-gt-xs="50" flex-gt-md="33" flex-gt-lg="25" layout-align-xl="25">
                     <week-forecast-card min="$ctrl.minWeek" max="$ctrl.maxWeek"/>
-                </div>
-                <div flex="100" flex-gt-md="50">
-                    <canvas id="chart"  style="height: 300px; width:600px;"></canvas>
+                </div>-->
+                <div flex>
+                    <md-card md-colors="{background: 'grey-100'}">
+                      <md-card-content>
+                        <canvas id="line" ´
+                                class="chart chart-line" 
+                                chart-data="$ctrl.chartData" 
+                                chart-labels="$ctrl.chartLabels"
+                                chart-series = "$ctrl.chartSeries"
+                                chart-options="$ctrl.chartOptions"
+                                chart-colors="[red, red, red, red]"
+                                style="height: 300px; width:600px;"></canvas>
+                      </md-card-content>
+                    </md-card>
                 </div>
             </div>
         </div>

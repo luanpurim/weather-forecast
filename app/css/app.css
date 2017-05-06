@@ -7,10 +7,17 @@
 .icon-white {
     color: white;
 }
-.big-icon {
-    font-size: 48px;
-    height: 48px;
+.medium-icon {
+    font-size: 36px;
+    height: 36px;
 }
 md-autocomplete {
     height: 70px !important;
+}
+
+.fav-active {
+    color: yellow !important;
+}
+.fav-inactive {
+    color: lightgray !important;
 }

@@ -4,6 +4,7 @@
     angular.module('app', [
         'ngRoute',
         'ngMaterial',
-        'chart.js'
+        'chart.js',
+        'ngStorage'
     ]);
 })();
