@@ -1,9 +1,16 @@
 .center-align {
     text-align: center;
 }
-.search-button {
-    margin-top: 10px !important;
-}
 .header {
-    height: 70px;
+    height: 80px;
+}
+.icon-white {
+    color: white;
+}
+.big-icon {
+    font-size: 48px;
+    height: 48px;
+}
+md-autocomplete {
+    height: 70px !important;
 }

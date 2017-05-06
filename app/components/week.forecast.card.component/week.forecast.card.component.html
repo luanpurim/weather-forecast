@@ -1,0 +1,35 @@
+<div layout="row">
+    <div flex="100">
+        <md-card>
+            <div>  
+                <md-card-header md-colors="{background: 'default-primary'}">
+                    <md-card-header-text>
+                        <span flex class="md-title center-align">
+                            Temperatura máx e min (7 dias)
+                        </span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-divider></md-divider>
+                <md-card-content md-colors="{background: 'default-accent'}">
+                    <div layout="row" layout-align="center center">
+                        <md-icon flex="20" class="material-icons big-icon">arrow_upward</md-icon>
+                        <div flex layout="column" layout-align="center start">
+                            <span flex ng-bind="('Máxima: ' + $ctrl.max.temp + '°C')"></span>
+                            <span flex ng-bind="(' Data: ' + ($ctrl.max.date | date:'EEE-dd-MMM'))"></span>
+                        </div>
+                    </div>
+                </md-card-content>
+                <md-divider></md-divider>
+                <md-card-content md-colors="{background: 'default-warn'}">
+                    <div layout="row" layout-align="center center" >
+                        <md-icon flex="20" class="material-icons icon-white big-icon">arrow_downward</md-icon>
+                            <div flex layout="column" layout-align="center start">
+                            <span flex ng-bind="(' Minima: ' + $ctrl.min.temp + '°C')"></span>
+                            <span flex ng-bind="(' Data: ' + ($ctrl.min.date | date:'EEE-dd-MMM'))"></span>
+                            </div>
+                    </div>
+                </md-card-content>
+            </div>
+        </md-card>
+    </div>
+</div>

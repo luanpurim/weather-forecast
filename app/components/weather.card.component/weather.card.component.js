@@ -4,7 +4,7 @@
     angular
         .module('app')
         .component('weatherCard', {
-            templateUrl: '/components/weather-card.component/weather-card.component.html',
+            templateUrl: '/components/weather.card.component/weather.card.component.html',
             controller: weatherCardCtrl,
             bindings: {
                 forecast: '<'

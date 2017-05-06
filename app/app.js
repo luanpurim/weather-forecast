@@ -3,6 +3,7 @@
 
     angular.module('app', [
         'ngRoute',
-        'ngMaterial'
+        'ngMaterial',
+        'chart.js'
     ]);
 })();

@@ -4,7 +4,7 @@
             <md-card-title md-colors="{background: 'default-primary'}">
                 <md-card-title-text>
                     <span class="md-headline" ng-bind="$ctrl.getDate($ctrl.forecast.dt) | date:'EEEE'"></span>
-                    <span class="md-subhead" md-colors="{color: 'grey-300'}" ng-bind="$ctrl.getDate($ctrl.forecast.dt) | date"></span>
+                    <span class="md-subhead" md-colors="{color: 'grey-300'}" ng-bind="$ctrl.getDate($ctrl.forecast.dt) | date:'longDate'"></span>
                 </md-card-title-text>
                 <md-card-title-media>
                     <div class="md-media-sm card-media">
@@ -12,6 +12,7 @@
                     </div>
                 </md-card-title-media>
             </md-card-title>
+            <md-divider></md-divider>
              <md-card-content>
                 <div layout="row" layout-align="space-around center">
                     <div flex="45" class="center-align">

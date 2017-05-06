@@ -3,13 +3,14 @@
 
     angular
         .module('app')
-        .factory('weatherFactory', weatherFactory);
+        .factory('forecastFactory', forecastFactory);
 
-    weatherFactory.inject = ['weatherApi', '$http'];
-    function weatherFactory(weatherApi, $http) {
+    forecastFactory.inject = ['weatherApi', '$http'];
+    function forecastFactory(weatherApi, $http) {
         var DEFAULT_CITY = "blumenau";
         var service = {
-            getWeatherInformation: getWeatherInformation
+            getWeatherInformation: getWeatherInformation,
+            getStates: getStates
         };
          
         function getWeatherInformation(cityName) {
@@ -27,6 +28,13 @@
                 url: weatherApi.baseUrl,
                 params: data
             })
+        }
+
+        function getStates() {
+            return $http({
+                method: 'get',
+                url: '/config/states-list.json'
+            }); 
         }
 
         return service;  

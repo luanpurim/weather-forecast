@@ -1,0 +1,74 @@
+<div md-whiteframe="1">
+    <md-toolbar layout="row" class="header" md-theme="{{'default-dark'}}" md-theme-watch >
+        <div flex layout="row" layout-align="end center">
+            <div flex layout="row" layout-align="start center">
+                 <span class="md-title">Previsão do Tempo</span>
+            </div>
+            <md-input-container>
+                <label>Estado</label>
+                <md-select ng-model="$ctrl.state"  md-on-close="$ctrl.loadStatesAndCities($ctrl.state)">
+                    <md-option ng-value="state" ng-repeat="state in $ctrl.states">{{ state.sigla }}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-autocomplete
+                md-no-cache="true" 
+                md-items="cityName in $ctrl.findCity($ctrl.city)" 
+                md-search-text="$ctrl.city" 
+                md-item-text="cityName"
+                md-floating-label="Cidade">
+                <span md-highlight-text="city">{{ cityName }}</span>
+            </md-autocomplete>
+            <md-button class="md-fab md-mini" ng-click="$ctrl.getWeatherInformation($ctrl.city)">
+                <md-icon class="material-icons">search</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+</div>
+<md-divider></md-divider>
+<div layout="row"  layout-align="space-around">
+
+    <div flex flex-gt-sm="70" flex-gt-lg="90" layout="row" layout-align="space-around center">
+        <div layout="column">
+            <div flex layout="row">
+                <section>
+                    <div layout="row" layout-align="space-around center">
+                        <md-progress-linear  
+                            ng-disabled="!$ctrl.showProgress" 
+                            class="md-accent" 
+                            md-diameter="40px" 
+                            md-mode="indeterminate">
+                        </md-progress-linear>
+                    </div>
+                    <div layout="row">
+                            <div layout="column">
+                                <div md-whiteframe="20" layout="row">
+                                    <md-subheader flex>
+                                        <div layout="column" layout-align="center center">
+                                            <span flex class="md-title" ng-bind="('Clima em ' + $ctrl.cityName)"></span>
+                                            <span flex class="md-subhead" ng-bind="($ctrl.initialDate+' a '+$ctrl.finalDate)"></span>
+                                        </div>
+                                    </md-subheader >
+                                </div>
+                                <div md-whiteframe="10" layout="row" layout-wrap layout-align="space-around center">
+                                    <div ng-repeat="forecast in $ctrl.data.list" flex="100" flex-gt-xs="50" flex-gt-md="33" flex-gt-lg="25">
+                                        <weather-card forecast="forecast"/>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </section>
+            </div>
+            <div flex layout-wrap layout="row"layout-align="space-around center" md-whiteframe >
+                <div flex-gt-xs="50" flex-gt-md="33" flex-gt-lg="25" layout-align-xl="25">
+                    <week-forecast-card min="$ctrl.minWeek" max="$ctrl.maxWeek"/>
+                </div>
+                <div flex="100" flex-gt-md="50">
+                    <canvas id="chart"  style="height: 300px; width:600px;"></canvas>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
