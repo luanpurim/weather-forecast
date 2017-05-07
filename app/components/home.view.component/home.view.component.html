@@ -55,7 +55,7 @@
                                     </div>  
                                     <div flex layout="row">
                                         <div flex="33" md-colors="{background: 'teal-dark'}">
-                                            <p class="md-caption center-align">Temperatura máxima e minima (7 dias)</p>
+                                            <p class="md-caption center-align">Temperatura máxima e mínima (7 dias)</p>
                                         </div>
                                         <div flex="33" layout="row" md-colors="{background: 'deep-orange'}">
                                             <md-icon flex="20" class="material-icons icon-white medium-icon">arrow_upward</md-icon>
@@ -64,7 +64,7 @@
                                         </div>
                                         <div flex="33" layout="row" md-colors="{background: 'indigo-400'}">
                                             <md-icon flex="20" class="material-icons icon-white medium-icon">arrow_downward</md-icon>
-                                            <p flex class="md-caption" ng-bind="(' Minima: ' + $ctrl.minWeek.temp + '°C')"></p>
+                                            <p flex class="md-caption" ng-bind="(' Mínima: ' + $ctrl.minWeek.temp + '°C')"></p>
                                             <p flex class="md-caption" ng-bind="(' Data: ' + ($ctrl.minWeek.date | date:'EEE-dd-MMM'))"></p>
                                         </div>
                                     </div>                                        
@@ -89,9 +89,9 @@
                                 class="chart chart-line" 
                                 chart-data="$ctrl.chartData" 
                                 chart-labels="$ctrl.chartLabels"
+                                chart-colors="$ctrl.chartColors"
                                 chart-series = "$ctrl.chartSeries"
                                 chart-options="$ctrl.chartOptions"
-                                chart-colors="[red, red, red, red]"
                                 style="height: 300px; width:600px;"></canvas>
                       </md-card-content>
                     </md-card>

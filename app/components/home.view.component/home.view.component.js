@@ -28,12 +28,12 @@
 
         function verifyCity(city) {
             if($localStorage.entity){
-                vm.aplyFav = (city == $localStorage.entity.city && state == $localStorage.entity.state) ? true : false;
+                vm.aplyFav = (city.toLowerCase() == $localStorage.entity.city.toLowerCase() && vm.state.sigla == $localStorage.entity.state.sigla) ? true : false;
             }
         }
 
         function saveFav(city) {
-            $localStorage.entity = !vm.aplyFav ? {city: city, state: state} : undefined; 
+            $localStorage.entity = !vm.aplyFav ? {city: city, state: vm.state} : undefined; 
             vm.aplyFav = !vm.aplyFav;
         }
         
@@ -67,6 +67,7 @@
         function loadStatesAndCities(state) {
             vm.state = state || vm.states[23] || '';
             vm.cities = vm.state.cidades || '';
+            vm.city = '';
         }
 
         function loadData(data) {
@@ -116,11 +117,10 @@
             vm.sugestion = vm.getWeekendInfo(saturday, sunday);
 
             vm.chartData = [minTemps,maxTemps]
-                                 
-
             vm.chartLabels = dates;
             vm.chartSeries = ['Min', 'Max']; 
-             vm.chartOptions = {
+            vm.chartColors = ['#45b7cd', '#ff6384', '#ff8e72']
+            vm.chartOptions = {
                                     title: {
                                         display: true,
                                         text: 'Temperaturas na Semana'
@@ -138,41 +138,6 @@
                                         }]
                                     }
                                 };
-
-            // var chart = document.getElementById("chart");
-            // var forecastChart = new Chart(chart, {
-            //     type: 'line',
-            //     data: {
-            //         labels: dates,
-            //         datasets:[
-            //         {
-            //             label: 'Min',
-            //             data: minTemps,
-            //             backgroundColor: "rgba(63, 81, 181,0.7)",
-            //             borderColor: "rgba(63, 81, 2301,1)"
-            //         },
-            //         {
-            //             label: 'Máxima',
-            //             data: maxTemps,
-            //             backgroundColor: "rgba(255, 110, 64, 0.6)",
-            //             borderColor: "rgba(255, 70, 64,1)"
-            //         }]
-            //     },
-            //     options: {
-            //         title: {
-            //             display: true,
-            //             text: 'Temperaturas na Semana'
-            //         },
-            //         scales: {
-            //             yAxes: [{
-            //                 ticks: {
-            //                     max: 40,
-            //                     min: 0
-            //                 }
-            //             }]
-            //         }
-            //     }
-            // })
         };
 
         function getWeekendInfo(saturday, sunday) {
