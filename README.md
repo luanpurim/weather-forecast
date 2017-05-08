@@ -6,7 +6,7 @@ The app uses:
 
 ## Installation and usage
 
-Install npm and run with start:
+Install npm, install bower and run with start:
 ```bash
 $ npm install
 $ bower install
