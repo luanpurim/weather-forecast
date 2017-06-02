@@ -1,0 +1,30 @@
+<div ng-if="$ctrl.forecast" layout="row">
+    <div flex="100">
+        <md-card>
+            <md-card-title md-colors="{background: 'default-primary'}">
+                <md-card-title-text>
+                    <span class="md-headline" ng-bind="$ctrl.getDate($ctrl.forecast.dt) | date:'EEEE'"></span>
+                    <span class="md-subhead" md-colors="{color: 'grey-300'}" ng-bind="$ctrl.getDate($ctrl.forecast.dt) | date:'longDate'"></span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-sm card-media">
+                        <img ng-src="{{$ctrl.getIcon($ctrl.forecast.weather[0].icon)}}" class="md-media-sm">
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-divider></md-divider>
+             <md-card-content md-colors="{background: 'grey-100'}">
+                <div layout="row" layout-align="space-around center">
+                    <div flex="45" class="center-align">
+                        <h4>Min</h4>
+                        <span ng-bind="($ctrl.forecast.temp.min) + '°C'">0°C</span>
+                    </div>
+                    <div flex="45" class="center-align">
+                        <h4>Max</h4>
+                       <span ng-bind="($ctrl.forecast.temp.max) + '°C'">0°C</span>
+                    </div>
+                </div>
+            </md-card-content> 
+          </md-card>        
+    </div>
+</div>
